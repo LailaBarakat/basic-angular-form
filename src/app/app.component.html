@@ -10,22 +10,41 @@
 
 {{ friend | json }}
 
+<!--<div *ngIf="checkRequiredFields(input)" class="alert alert-danger" role="alert">
+  Required field is missing.
+</div>-->
+
+
+
   <div>
-    <form method="get" #formName="ngForm">
-      First Name : <input type="text" name="FirstName" [(ngModel)]="friend.FirstName" #FirstName="ngModel">
-      Last Name : <input type="text" name="LastName" [(ngModel)]="friend.LastName" #LastName="ngModel">
-      Email : <input type="email" name="email" [(ngModel)]="friend.email" #email="ngModel">
-      Phone Number : <input type="tel" name="PhoneNumber" [(ngModel)]="friend.PhoneNumber" #PhoneNumber="ngModel">
+    <form method="get" #formName="ngForm" novalidate (ngSubmit)="Function()">
+      First Name : <input type="text" name="FirstName" required [class.alert-danger]="FirstName.invalid && FirstName.touched" pattern="^[A-Za-z.-]+(\s*[A-Za-z.-]+)*$" [(ngModel)]="friend.FirstName" #FirstName="ngModel">
+      Last Name : <input type="text" name="LastName" required [class.alert-danger]="LastName.invalid && LastName.touched" pattern="^[A-Za-z.-]+(\s*[A-Za-z.-]+)*$" [(ngModel)]="friend.LastName" #LastName="ngModel">
+      Email : <input type="email" name="email" required [class.alert-danger]="email.invalid && email.touched" pattern="^[0-9a-zA-Z\.@]*$" [(ngModel)]="friend.email" #email="ngModel">
+      Phone Number : <input type="tel" name="PhoneNumber" required [class.alert-danger]="PhoneNumber.invalid && PhoneNumber.touched" pattern="^\+?[0-9]*$" [(ngModel)]="friend.PhoneNumber" #PhoneNumber="ngModel">
 
       <label for="languages">Favourite Language :</label>
-
-      <select name="languages" id="languages">
+      <select name="languages" id="languages" required [class.alert-danger]="Language.invalid && Language.touched" [(ngModel)]="friend.Language" #Language="ngModel">
       <option *ngFor="let language of languages" value="{{language}}">{{language}}</option>
-
       </select>
 
-      <button> Submit </button>
+      <button type="submit" [disabled]="FirstName.invalid || LastName.invalid || email.invalid || PhoneNumber.invalid || Language.invalid"> Submit </button>
     </form>
   </div>
+
+
+<!--<div *ngIf="FirstName.errors.required" class="alert alert-danger" role="alert">
+  FirstName is required.
+</div>
+<div *ngIf="LastName.errors.required" class="alert alert-danger" role="alert">
+  LasttName is required.
+</div>
+<div *ngIf="email.errors.required" class="alert alert-danger" role="alert">
+  email is required.
+</div>
+<div *ngIf="PhoneNumber.errors.required" class="alert alert-danger" role="alert">
+  PhoneNumber is required.
+</div>-->
+
 </body>
 

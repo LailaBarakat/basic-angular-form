@@ -16,6 +16,11 @@ export class AppComponent {
     "html", "css", "js", "php"
   ]
   friend = new Friend(null,null,null,null,null);
+//In your component class, define the function and console log your friend model.
+// Now when you submit you'll see the data appear in your console.
+  public Function(){
+    console.log(this.friend)
+  };
 }
 
 
