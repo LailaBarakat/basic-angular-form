@@ -17,7 +17,7 @@
 
 
   <div>
-    <form method="get" #formName="ngForm" novalidate (ngSubmit)="Function()">
+    <form method="get" #formName="ngForm" novalidate (ngSubmit)="addFriend()">
       First Name : <input type="text" name="FirstName" required [class.alert-danger]="FirstName.invalid && FirstName.touched" pattern="^[A-Za-z.-]+(\s*[A-Za-z.-]+)*$" [(ngModel)]="friend.FirstName" #FirstName="ngModel">
       Last Name : <input type="text" name="LastName" required [class.alert-danger]="LastName.invalid && LastName.touched" pattern="^[A-Za-z.-]+(\s*[A-Za-z.-]+)*$" [(ngModel)]="friend.LastName" #LastName="ngModel">
       Email : <input type="email" name="email" required [class.alert-danger]="email.invalid && email.touched" pattern="^[0-9a-zA-Z\.@]*$" [(ngModel)]="friend.email" #email="ngModel">

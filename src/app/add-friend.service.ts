@@ -8,10 +8,14 @@ import { Friend } from "./friend";
 export class AddFriendService {
 
   private http : HttpClient;
+  private url : string = 'http://localhost:9000/';
 
-  public addFriend (friend : Friend){}
+  public addFriend (friend : Friend){
 
-  constructor(http) {this.http = http}
+    return this.http.post(this.url + 'addFriend', friend)
+  }
+
+  constructor(http : HttpClient) {this.http = http}
 }
 
 //In the service, make a method called addFriend and give it a parameter, typehint it to be of the Friend type.
